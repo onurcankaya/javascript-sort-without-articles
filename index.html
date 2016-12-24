@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sort Without Articles</title>
+</head>
+<body>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #004080;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    #movies {
+      list-style: inside square;
+      font-size: 18px;
+      background: white;
+      width: 500px;
+      margin: auto;
+      padding: 0;
+      box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+    #movies li {
+      border-bottom: 1px solid #efefef;
+      padding: 20px;
+    }
+    #movies li:last-child {
+      border-bottom: 0;
+    }
+
+    a {
+      color: #ffc600;
+      text-decoration: none;
+    }
+
+  </style>
+
+  <ul id="movies"></ul>
+
+  <script>
+
+  const movies = ['The Big Lebowski', 'Das Leben Der Anderen', 'El Secreto De Sus Ojos',
+  'Das Weisse Band', 'La Haine', 'Die Welle', 'Citizen Kane', '2001: A Space Odyssey',
+  'The Lord Of The Rings', 'Blade Runner', 'Y Tu Mama Tambien', 'Interstellar', 'Enter The Void'];
+
+  function strip(movieName) {
+    return movieName.replace(/^(a |the |an |das |der |die |el |la )/i, '').trim();
+  }
+
+  const sortedMovies = movies.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
+
+  document.querySelector('#movies').innerHTML =
+    sortedMovies
+      .map(movie => `<li>${movie}</li>`)
+      .join('');
+
+  </script>
+
+</body>
+</html>
